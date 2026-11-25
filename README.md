@@ -1,24 +1,38 @@
 # imessage-box
 
-Turn a Linux server with KVM into an iMessage box: a headless macOS Ventura VM running the
-[BlueBubbles](https://bluebubbles.app) server, with its REST API on a port of the host.
+**Run iMessage on a Linux server.** One script sets up a macOS virtual machine with
+[BlueBubbles](https://bluebubbles.app) inside, so your scripts, bots and AI agents can send and
+read iMessages through a simple HTTP API. You don't need a Mac.
 
-> **Unofficial.** This project is not affiliated with, endorsed by, or supported by Apple Inc.
-> or BlueBubbles. macOS and iMessage are Apple's. You must comply with Apple's macOS licence
-> (which only permits macOS on Apple-branded hardware) and Apple's terms for iMessage; see
-> [Licensing and terms](#licensing-and-terms).
+## Why you'd want it
+
+- Text from your own code. Alerts, reminders, a home automation that texts your family, an AI
+  assistant that reads and answers your messages.
+- Blue bubbles from Android, Windows or Linux, using any BlueBubbles client app.
+- It runs on hardware you already own. No Mac mini in a closet and no paid relay service. Your
+  messages stay on your machine.
+
+## How easy it is
 
 ```sh
 git clone https://github.com/8thlyr/imessage-box.git && cd imessage-box
-./install.sh      # ~45 min, unattended (41 min in testing)
-./signin.sh       # Apple ID + the 6-digit code from your iPhone
-./status.sh       # VM, BlueBubbles API, iMessage account
+./install.sh      # about 45 minutes, and you don't touch anything
+./signin.sh       # type your Apple ID, then the 6-digit code from your iPhone
+./status.sh       # check that it works
 ```
 
-`install.sh` is the only setup step. You type nothing into the VM: it installs macOS from
-Recovery with `startosinstall`, creates the user offline, skips Setup Assistant, and a first-boot
-script installs and configures BlueBubbles. `signin.sh` is the one human step, because Apple
-sends the 2FA code to your phone.
+That's the whole setup. `install.sh` downloads macOS straight from Apple, installs it, skips the
+setup screens, installs BlueBubbles and makes the VM start on boot. The only thing you do yourself
+is sign in to Apple, because Apple sends the code to your phone.
+
+You need a Linux box with KVM, 4 GB of RAM to spare and about 45 GB of free disk. Run
+`./install.sh --check` first and it will tell you whether your machine qualifies, without
+changing anything.
+
+> **Unofficial.** This project is not affiliated with, endorsed by or supported by Apple Inc. or
+> BlueBubbles. macOS and iMessage belong to Apple. You must follow Apple's macOS licence, which
+> only permits macOS on Apple-branded hardware, and Apple's terms for iMessage. See
+> [Licensing and terms](#licensing-and-terms).
 
 ## Requirements
 
