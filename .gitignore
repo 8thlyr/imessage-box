@@ -1,0 +1,4 @@
+# Everything per-box: disks, passwords, Mac identity, logs, screenshots
+/state/
+/box.conf
+__pycache__/

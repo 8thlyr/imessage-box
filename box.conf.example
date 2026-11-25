@@ -1,0 +1,37 @@
+# Copy to box.conf (gitignored) and change what you need. Every value here is the default.
+
+# Name of the VM, its qemu process and its systemd unit.
+VM_NAME=imessage-box
+
+# Host address for BlueBubbles and VNC. 127.0.0.1 keeps them on this machine (use an SSH tunnel).
+# To reach the box from your phone without opening it to the internet, use this machine's
+# Tailscale/WireGuard address, e.g. BIND_ADDR=100.x.y.z. Never put it on a public interface:
+# the API is protected by a password only and VNC by an 8-character password.
+BIND_ADDR=127.0.0.1
+BB_PORT=1234          # BlueBubbles REST/socket API
+VNC_PORT=5910         # 5900-5999
+SSH_PORT=2222         # guest ssh, always 127.0.0.1
+PROV_PORT=8767        # install-time file server, 127.0.0.1 only
+
+# URL BlueBubbles tells its clients to use. Default: http://BIND_ADDR:BB_PORT
+#SERVER_URL=https://imessage.example.ts.net
+
+# VM size. 2 CPUs / 4 GB is enough for Messages + BlueBubbles.
+CPUS=2
+RAM_MB=4096
+DISK_GB=64            # thin; ~15 GB used after install
+
+# Where the VM lives and where downloads are cached.
+#STATE_DIR=/path/to/imessage-box/state
+#CACHE_DIR=~/.cache/imessage-box
+
+# Guest account and time zone (default: the host's time zone).
+GUEST_USER=imsg
+#GUEST_TZ=America/Chicago
+
+# SIP off lets the first boot grant BlueBubbles Full Disk Access, Accessibility, Contacts and
+# Automation by itself. With SIP=on you click those in System Settings over VNC.
+SIP=off
+
+# Keep the clean post-install disk as a read-only base; ./vm.sh reset goes back to it.
+SNAPSHOT=1
